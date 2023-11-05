@@ -38,6 +38,7 @@ class _MemberDashboardState extends State<MemberDashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Row(
         children: [
           /// Pretty similar to the BottomNavigationBar!

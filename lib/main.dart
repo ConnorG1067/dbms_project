@@ -1,3 +1,4 @@
+import 'package:dbms_project/features/home/intro_page.dart';
 import 'package:dbms_project/features/loginSignUp/login_sign_up.dart';
 import 'package:dbms_project/util/globals.dart';
 import 'package:fluent_ui/fluent_ui.dart';
