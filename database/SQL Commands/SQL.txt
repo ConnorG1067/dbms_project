@@ -1,0 +1,18 @@
+CREATE TABLE accounts(
+	accountid SERIAL PRIMARY KEY,
+	firstName varchar(255),
+	lastName varchar(255),
+	email varchar(255),
+	password varchar(255)
+);
+
+CREATE TABLE users(
+	accountid INT,
+	firstName varchar(255),
+	lastName varchar(255),
+	weight FLOAT,
+	age INT,
+	feet INT,
+	inches int,
+	sex varchar(6)
+);
