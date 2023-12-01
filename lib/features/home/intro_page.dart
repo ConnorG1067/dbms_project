@@ -1,4 +1,4 @@
-import 'package:dbms_project/features/home/member_dashboard.dart';
+import 'package:dbms_project/features/home/side_bar_nav.dart';
 import 'package:flutter/material.dart';
 
 import '../../util/globals.dart';
@@ -20,7 +20,7 @@ class _IntroPageState extends State<IntroPage> {
   String generalError = "";
 
   Future<void> logUserInformationInDb(double weight, int feet, int inches, int age, bool male) async {
-    Map<String, dynamic> currentAccountMap = Globals.currentAccount.first.toTableColumnMap()['accounts']!;
+    Map<String, dynamic> currentAccountMap = Globals.currentAccount['accounts'];
     int accountId = currentAccountMap['accountid'];
     String firstName = currentAccountMap['firstname'];
     String lastName = currentAccountMap['lastname'];
@@ -124,7 +124,7 @@ class _IntroPageState extends State<IntroPage> {
                       setState(() => generalError = "All fields are required");
                     }else{
                       await logUserInformationInDb(double.parse(weightController.text), int.parse(feetController.text), int.parse(inchesController.text), int.parse(ageController.text), isMale).then(
-                        (_) => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const MemberDashboard()))
+                        (_) => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SideBarNav()))
                       );
                     }
                   },

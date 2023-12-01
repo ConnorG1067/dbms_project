@@ -1,4 +1,4 @@
-import 'package:dbms_project/features/home/member_dashboard.dart';
+import 'package:dbms_project/features/home/side_bar_nav.dart';
 import 'package:dbms_project/features/loginSignUp/sign_up.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart' as material;
@@ -26,8 +26,7 @@ class _LoginPageState extends State<LoginPage> {
   Future<bool> loginUser(String email, String password) async {
     PostgreSQLResult result = await Globals.database.query("SELECT * FROM accounts WHERE email='$email' AND password='$password'");
     if(result.isNotEmpty){
-      Globals.currentAccount = result;
-      print(Globals.currentAccount.first.toTableColumnMap());
+      Globals.currentAccount = result.first.toTableColumnMap();
       return true;
     }
     return false;
@@ -83,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                       setState(() => generalError = "All fields are required");
                     }else{
                       if(await loginUser(emailController.text, passwordController.text)){
-                        Navigator.of(context).push(material.MaterialPageRoute(builder: (context) => const MemberDashboard()));
+                        Navigator.of(context).push(material.MaterialPageRoute(builder: (context) => const SideBarNav()));
                       }else{
                         setState(() => generalError = "Credentials are invalid");
                       }

@@ -40,6 +40,8 @@ dependencies:
   google_fonts: ^6.1.0
   path_provider: ^2.1.1
   side_navigation: ^1.0.4
+  circle_progress_bar: ^0.1.2
+  dashed_circular_progress_bar: ^0.0.6
 
 dev_dependencies:
   flutter_test:

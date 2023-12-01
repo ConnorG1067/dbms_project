@@ -1,8 +1,11 @@
+import 'package:dbms_project/features/home/main_dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:side_navigation/side_navigation.dart';
+import 'package:intl/intl.dart';
+import '../../util/globals.dart';
 
-class MemberDashboard extends StatefulWidget {
-  const MemberDashboard({
+class SideBarNav extends StatefulWidget {
+  const SideBarNav({
     Key? key,
   }) : super(key: key);
 
@@ -10,12 +13,10 @@ class MemberDashboard extends StatefulWidget {
   _MemberDashboardState createState() => _MemberDashboardState();
 }
 
-class _MemberDashboardState extends State<MemberDashboard> {
+class _MemberDashboardState extends State<SideBarNav> {
   /// Views to display
-  List<Widget> views = const [
-    Center(
-      child: Text('Dashboard'),
-    ),
+  List<Widget> views =  [
+    MainDashboard(),
     Center(
       child: Text('Routines'),
     ),
@@ -53,13 +54,13 @@ class _MemberDashboardState extends State<MemberDashboard> {
                   showMainDivider: true,
                 )),
             selectedIndex: selectedIndex,
-            header: const SideNavigationBarHeader(
-                title: Text("Your Username"),
+            header: SideNavigationBarHeader(
+                title: Text(Globals.currentAccount['accounts']['firstname']),
                 image: CircleAvatar(
                   child: Icon(Icons.sports_gymnastics),
                 ),
                 subtitle: Text(
-                  "Health program 5000",
+                DateFormat('yyyy-MM-dd').format(DateTime.now()),
                   style: TextStyle(color: Colors.grey, fontSize: 10),
                 )),
             items: const [

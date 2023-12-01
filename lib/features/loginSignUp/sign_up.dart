@@ -1,5 +1,5 @@
 import 'package:dbms_project/features/home/intro_page.dart';
-import 'package:dbms_project/features/home/member_dashboard.dart';
+import 'package:dbms_project/features/home/side_bar_nav.dart';
 import 'package:dbms_project/features/loginSignUp/login.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -38,7 +38,7 @@ class _SignUpPageState extends State<SignUpPage> {
     // If it does not then insert the data into the table accordingly
     if(result.isEmpty){
       await Globals.database.query("INSERT INTO accounts (firstName, lastName, email, password) VALUES ('$firstName', '$lastName', '$email', '$password')");
-      Globals.currentAccount = await Globals.database.query("SELECT * FROM accounts WHERE email='$email' AND password='$password'");
+      Globals.currentAccount = (await Globals.database.query("SELECT * FROM accounts WHERE email='$email' AND password='$password'")).first.toTableColumnMap();
       return true;
     }
 
