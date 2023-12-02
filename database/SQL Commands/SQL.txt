@@ -16,3 +16,19 @@ CREATE TABLE users(
 	inches int,
 	sex varchar(6)
 );
+
+CREATE TABLE goals(
+	accountid INT,
+	steps INT,
+	hydration INT,
+	calorieIntake INT,
+	weight INT
+);
+
+CREATE TABLE dailyLogs(
+	accountid INT,
+	steps INT,
+	hydration INT,
+	calorieIntake INT,
+	weight INT
+);
