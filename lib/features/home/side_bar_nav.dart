@@ -1,8 +1,10 @@
 import 'package:dbms_project/features/home/main_dashboard.dart';
+import 'package:dbms_project/features/home/edit_user_data.dart';
+import '../../util/globals.dart';
+
 import 'package:flutter/material.dart';
 import 'package:side_navigation/side_navigation.dart';
 import 'package:intl/intl.dart';
-import '../../util/globals.dart';
 
 class SideBarNav extends StatefulWidget {
   const SideBarNav({
@@ -15,7 +17,7 @@ class SideBarNav extends StatefulWidget {
 
 class _MemberDashboardState extends State<SideBarNav> {
   /// Views to display
-  List<Widget> views =  [
+  List<Widget> views = [
     MainDashboard(),
     Center(
       child: Text('Routines'),
@@ -32,6 +34,7 @@ class _MemberDashboardState extends State<SideBarNav> {
     Center(
       child: Text('Settings'),
     ),
+    EditUserDataPage(),
   ];
 
   int selectedIndex = 0;
@@ -60,7 +63,7 @@ class _MemberDashboardState extends State<SideBarNav> {
                   child: Icon(Icons.sports_gymnastics),
                 ),
                 subtitle: Text(
-                DateFormat('yyyy-MM-dd').format(DateTime.now()),
+                  DateFormat('yyyy-MM-dd').format(DateTime.now()),
                   style: TextStyle(color: Colors.grey, fontSize: 10),
                 )),
             items: const [
@@ -87,6 +90,10 @@ class _MemberDashboardState extends State<SideBarNav> {
               SideNavigationBarItem(
                 icon: Icons.settings,
                 label: 'Settings',
+              ),
+              SideNavigationBarItem(
+                icon: Icons.settings,
+                label: 'Edit User Data',
               ),
             ],
             onTap: (index) {
