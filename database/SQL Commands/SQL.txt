@@ -33,6 +33,6 @@ CREATE TABLE dailyLogs(
 	hydration INT,
 	calorieIntake INT,
 	weight INT,
-	sleepHours INT
+	sleepHours INT,
 	activeMins INT
 );
