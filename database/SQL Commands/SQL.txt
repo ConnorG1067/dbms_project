@@ -22,7 +22,9 @@ CREATE TABLE goals(
 	steps INT,
 	hydration INT,
 	calorieIntake INT,
-	weight INT
+	weight INT,
+	sleepHours INT,
+	activeMins INT
 );
 
 CREATE TABLE dailyLogs(
@@ -30,5 +32,7 @@ CREATE TABLE dailyLogs(
 	steps INT,
 	hydration INT,
 	calorieIntake INT,
-	weight INT
+	weight INT,
+	sleepHours INT
+	activeMins INT
 );
