@@ -157,7 +157,7 @@ class _MainDashboardState extends State<MainDashboard> {
                 return AlertDialog(
                   title: Text('Schedule or cancel a session for ${date.year}-${date.month}-${date.day}'),
                   content: StatefulBuilder(
-                    builder: (BuildContext context, StateSetter setState1) {
+                    builder: (BuildContext context, StateSetter setStateDialog) {
                       return Column(
                         children: [
                           ExpandableNotifier(
@@ -185,7 +185,7 @@ class _MainDashboardState extends State<MainDashboard> {
                                           padding: const EdgeInsets.only(bottom: 8.0),
                                           child: TextButton(
                                             onPressed: () {
-                                              setState1(() {
+                                              setStateDialog(() {
                                                 scheduleExpander.expanded = true;
                                               });
                                             },
@@ -229,7 +229,7 @@ class _MainDashboardState extends State<MainDashboard> {
                                         DropdownButton<String>(
                                           value: sessionType,
                                           onChanged: (String? newValue) {
-                                            setState1(() {
+                                            setStateDialog(() {
                                               sessionType = newValue!;
                                             });
                                           },
@@ -293,7 +293,7 @@ class _MainDashboardState extends State<MainDashboard> {
                               height: 200, // Set the fixed height as needed
                               child: SingleChildScrollView(
                                 child: Column(
-                                    children: generateSessionCards(setState1)
+                                    children: generateSessionCards(setStateDialog)
                                 ),
                               )
                           ),
