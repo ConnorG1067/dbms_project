@@ -43,6 +43,7 @@ dependencies:
   circle_progress_bar: ^0.1.2
   dashed_circular_progress_bar: ^0.0.6
   table_calendar: ^3.0.9
+  expandable: ^5.0.1
 
 dev_dependencies:
   flutter_test:
