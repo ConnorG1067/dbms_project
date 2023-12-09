@@ -1,9 +1,9 @@
 import 'package:dbms_project/features/home/intro_page.dart';
 import 'package:dbms_project/features/home/side_bar_nav.dart';
 import 'package:dbms_project/features/loginSignUp/login.dart';
-import 'package:fluent_ui/fluent_ui.dart';
+import 'package:fluent_ui/fluent_ui.dart' as fluent;
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter/material.dart' as material;
+import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 
 import '../../util/globals.dart';
@@ -18,6 +18,7 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   bool isPassVisible = false;
   bool isPassVisibleConfirm = false;
+  String accountType = "member"; // Can be member, trainer or admin
 
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
@@ -32,7 +33,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
 
 
-  Future<bool> signUpUser(String firstName, String lastName, String email, String password) async {
+  Future<bool> signUpUser(String firstName, String lastName, String email, String password, String accountType) async {
     // Check if the email already exists within the accounts table
     PostgreSQLResult result = await Globals.database.query("SELECT * FROM accounts WHERE accounts.email='$email'");
     // If it does not then insert the data into the table accordingly
@@ -47,9 +48,9 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    return FluentTheme(
-      data: FluentThemeData(scaffoldBackgroundColor: Colors.white),
-      child: ScaffoldPage(
+    return fluent.FluentTheme(
+      data: fluent.FluentThemeData(scaffoldBackgroundColor: Colors.white),
+      child: fluent.ScaffoldPage(
         content: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -57,12 +58,64 @@ class _SignUpPageState extends State<SignUpPage> {
               Text(
                 "Health App 3000", style: GoogleFonts.teko(color: Colors.blue, fontSize: 56),
               ),
+
+              const SizedBox(height: 15),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: 95,
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor: (accountType == "member") ? MaterialStateProperty.all(Colors.blue) : MaterialStateProperty.all(Colors.white),
+                          foregroundColor: (accountType == "member") ? MaterialStateProperty.all(Colors.white) : MaterialStateProperty.all(Colors.black)
+                      ),
+                      child: const Text('Member'),
+                      onPressed: () {
+                        setState(() => accountType = "member");
+                      },
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  SizedBox(
+                    width: 95,
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor: (accountType == "trainer") ? MaterialStateProperty.all(Colors.blue) : MaterialStateProperty.all(Colors.white),
+                          foregroundColor: (accountType == "trainer") ? MaterialStateProperty.all(Colors.white) : MaterialStateProperty.all(Colors.black)
+                      ),
+                      child: const Text('Trainer'),
+                      onPressed: () {
+                        setState(() => accountType = "trainer");
+                      },
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  SizedBox(
+                    width: 95,
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor: (accountType == "admin") ? MaterialStateProperty.all(Colors.blue) : MaterialStateProperty.all(Colors.white),
+                          foregroundColor: (accountType == "admin") ? MaterialStateProperty.all(Colors.white) : MaterialStateProperty.all(Colors.black)
+                      ),
+                      child: Text('Admin'),
+                      onPressed: () {
+                        setState(() => accountType = "admin");
+                      },
+                    ),
+                  ),
+                ],
+              ),
+
+              //const SizedBox(height: 10),
+
               SizedBox(
                 width: 200,
-                child: InfoLabel(
-                  labelStyle: TextStyle(color: Colors.red),
+                child: fluent.InfoLabel(
+                  labelStyle: const TextStyle(color: Colors.red),
                   label: (generalError.isNotEmpty) ? generalError : "",
-                  child: TextBox(
+                  child: fluent.TextBox(
                     controller: firstNameController,
                     placeholder: 'First Name',
                     expands: false,
@@ -71,9 +124,9 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               SizedBox(
                 width: 200,
-                child: InfoLabel(
+                child: fluent.InfoLabel(
                   label: '',
-                  child: TextBox(
+                  child: fluent.TextBox(
                     controller: lastNameController,
                     placeholder: 'Last Name',
                     expands: false,
@@ -82,10 +135,10 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               SizedBox(
                 width: 200,
-                child: InfoLabel(
-                  labelStyle: TextStyle(color: Colors.red),
+                child: fluent.InfoLabel(
+                  labelStyle: const TextStyle(color: Colors.red),
                   label: (emailError.isNotEmpty) ? emailError : "",
-                  child: TextBox(
+                  child: fluent.TextBox(
                     controller: emailController,
                     placeholder: 'Email',
                     expands: false,
@@ -94,13 +147,13 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               SizedBox(
                 width: 200,
-                child: InfoLabel(
-                  labelStyle: TextStyle(color: Colors.red),
+                child: fluent.InfoLabel(
+                  labelStyle: const TextStyle(color: Colors.red),
                   label: (passwordError.isNotEmpty) ? passwordError : "",
-                  child: TextBox(
+                  child: fluent.TextBox(
                     controller: passwordController,
-                    suffix: IconButton(
-                      icon: Icon(!(isPassVisible) ? FluentIcons.view : FluentIcons.hide3),
+                    suffix: fluent.IconButton(
+                      icon: Icon(!(isPassVisible) ? fluent.FluentIcons.view : fluent.FluentIcons.hide3),
                       onPressed: () => setState(() => isPassVisible = !isPassVisible),
                     ),
                     obscureText: !(isPassVisible),
@@ -111,12 +164,12 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               SizedBox(
                 width: 200,
-                child: InfoLabel(
+                child: fluent.InfoLabel(
                   label: '',
-                  child: TextBox(
+                  child: fluent.TextBox(
                     controller: passwordConfirmController,
-                    suffix: IconButton(
-                      icon: Icon(!(isPassVisibleConfirm) ? FluentIcons.view : FluentIcons.hide3),
+                    suffix: fluent.IconButton(
+                      icon: Icon(!(isPassVisibleConfirm) ? fluent.FluentIcons.view : fluent.FluentIcons.hide3),
                       onPressed: () => setState(() => isPassVisibleConfirm = !isPassVisibleConfirm),
                     ),
                     obscureText: !(isPassVisibleConfirm),
@@ -125,7 +178,11 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               ),
+
               const SizedBox(height: 15),
+
+              const SizedBox(height: 15),
+
               SizedBox(
                 width: 200,
                 child: FilledButton(
@@ -140,7 +197,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     // Ensure the passwords are the same
                     }else if(passwordController.text == passwordConfirmController.text){
                       // If the function returns false then notify the user the email is in use
-                      if(!(await signUpUser(firstNameController.text, lastNameController.text, emailController.text, passwordController.text))){
+                      if(!(await signUpUser(firstNameController.text, lastNameController.text, emailController.text, passwordController.text, accountType))){
                         emailError = "Email already in use";
                       }else{
                         Globals.accountType = accountType;
@@ -157,7 +214,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               fluent.HyperlinkButton(
                 child: const Text("Already have an account? Login"),
-                onPressed: () => Navigator.of(context).push(material.MaterialPageRoute(builder: (context) => const LoginPage())),
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const LoginPage())),
               ),
             ],
           ),
