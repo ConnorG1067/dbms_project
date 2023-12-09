@@ -13,10 +13,7 @@ class MainDashboard extends StatefulWidget {
 class _MainDashboardState extends State<MainDashboard> {
 
   List<Widget> cardList = [
-    DashboardWidgets.dashboardCard(160, 250, 'Weight'),
-    DashboardWidgets.dashboardCard(1500, 3200, 'Calories'),
-    DashboardWidgets.dashboardCard(3700, 10000, 'Steps'),
-    DashboardWidgets.dashboardCard(500, 3700, 'Hydration')
+
 
   ];
 
@@ -24,15 +21,6 @@ class _MainDashboardState extends State<MainDashboard> {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(width: 250, height: 250, child: DashboardWidgets.dashboardCard(160, 250, 'Weight')),
-            SizedBox(width: 250, height: 250, child: DashboardWidgets.dashboardCard(160, 250, 'Calories')),
-            SizedBox(width: 250, height: 250, child: DashboardWidgets.dashboardCard(160, 250, 'Steps')),
-          ],
-        ),
         Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
