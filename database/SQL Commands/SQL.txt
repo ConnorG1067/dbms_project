@@ -37,3 +37,15 @@ CREATE TABLE dailyLogs(
 	sleepHours INT,
 	activeMins INT
 );
+
+CREATE TABLE equipment(
+	equipmentid SERIAL PRIMARY KEY,
+	purchasedate DATE
+);
+
+CREATE TABLE maintenanceLogs(
+	loggedby INT,
+	equipmentid INT,
+	logdate DATE,
+	notes varchar(255)
+);
