@@ -37,11 +37,10 @@ class _SignUpPageState extends State<SignUpPage> {
     PostgreSQLResult result = await Globals.database.query("SELECT * FROM accounts WHERE accounts.email='$email'");
     // If it does not then insert the data into the table accordingly
     if(result.isEmpty){
-      await Globals.database.query("INSERT INTO accounts (firstName, lastName, email, password) VALUES ('$firstName', '$lastName', '$email', '$password')");
+      await Globals.database.query("INSERT INTO accounts (account_type, firstName, lastName, email, password) VALUES ('$accountType', '$firstName', '$lastName', '$email', '$password')");
       Globals.currentAccount = (await Globals.database.query("SELECT * FROM accounts WHERE email='$email' AND password='$password'")).first.toTableColumnMap();
       return true;
     }
-
     // return false indicating the email is a duplicate
     return false;
   }
@@ -144,7 +143,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       if(!(await signUpUser(firstNameController.text, lastNameController.text, emailController.text, passwordController.text))){
                         emailError = "Email already in use";
                       }else{
-                        Navigator.of(context).push(material.MaterialPageRoute(builder: (context) => const IntroPage()));
+                        Globals.accountType = accountType;
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const IntroPage()));
                       }
                     // Notify the user the passwords do not match
                     }else{
@@ -155,7 +155,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   },
                 ),
               ),
-              HyperlinkButton(
+              fluent.HyperlinkButton(
                 child: const Text("Already have an account? Login"),
                 onPressed: () => Navigator.of(context).push(material.MaterialPageRoute(builder: (context) => const LoginPage())),
               ),

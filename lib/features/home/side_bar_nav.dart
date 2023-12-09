@@ -1,6 +1,7 @@
 import 'package:dbms_project/features/home/main_dashboard.dart';
 import 'package:dbms_project/features/home/edit_user_data.dart';
 import 'package:dbms_project/features/home/daily_log.dart';
+import 'package:dbms_project/features/home/equipment_maintenance.dart';
 import '../../util/globals.dart';
 
 import 'package:flutter/material.dart';
@@ -37,6 +38,8 @@ class _MemberDashboardState extends State<SideBarNav> {
     ),
     const EditUserDataPage(),
     const DailyLogPage(),
+    if(Globals.accountType == 'admin')
+    const EquipmentMaintenancePage(),
   ];
 
   int selectedIndex = 0;
@@ -61,45 +64,50 @@ class _MemberDashboardState extends State<SideBarNav> {
             selectedIndex: selectedIndex,
             header: SideNavigationBarHeader(
                 title: Text(Globals.currentAccount['accounts']['firstname']),
-                image: CircleAvatar(
+                image: const CircleAvatar(
                   child: Icon(Icons.sports_gymnastics),
                 ),
                 subtitle: Text(
                   DateFormat('yyyy-MM-dd').format(DateTime.now()),
-                  style: TextStyle(color: Colors.grey, fontSize: 10),
+                  style: const TextStyle(color: Colors.grey, fontSize: 10),
                 )),
-            items: const [
-              SideNavigationBarItem(
+            items: [
+              const SideNavigationBarItem(
                 icon: Icons.dashboard,
                 label: 'Dashboard',
               ),
-              SideNavigationBarItem(
+              const SideNavigationBarItem(
                 icon: Icons.alarm_outlined,
                 label: 'Routines',
               ),
-              SideNavigationBarItem(
+              const SideNavigationBarItem(
                 icon: Icons.plus_one,
                 label: 'Achievements',
               ),
-              SideNavigationBarItem(
+              const SideNavigationBarItem(
                 icon: Icons.calendar_today,
                 label: 'Schedule',
               ),
-              SideNavigationBarItem(
+              const SideNavigationBarItem(
                 icon: Icons.person,
                 label: 'Account',
               ),
-              SideNavigationBarItem(
+              const SideNavigationBarItem(
                 icon: Icons.settings,
                 label: 'Settings',
               ),
-              SideNavigationBarItem(
+              const SideNavigationBarItem(
                 icon: Icons.settings,
                 label: 'Edit User Data',
               ),
-              SideNavigationBarItem(
+              const SideNavigationBarItem(
                 icon: Icons.settings,
                 label: 'Daily Log'
+              ),
+              if(Globals.accountType == "admin")
+              const SideNavigationBarItem(
+                icon: Icons.settings,
+                label: 'Equipment Maintenance'
               ),
             ],
             onTap: (index) {

@@ -27,6 +27,7 @@ class _LoginPageState extends State<LoginPage> {
     PostgreSQLResult result = await Globals.database.query("SELECT * FROM accounts WHERE email='$email' AND password='$password'");
     if(result.isNotEmpty){
       Globals.currentAccount = result.first.toTableColumnMap();
+      Globals.accountType = (Globals.currentAccount['accounts'] as Map<String, dynamic>)['account_type'];
       return true;
     }
     return false;
