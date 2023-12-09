@@ -1,5 +1,6 @@
 import 'package:dbms_project/features/home/main_dashboard.dart';
 import 'package:dbms_project/features/home/edit_user_data.dart';
+import 'package:dbms_project/features/home/daily_log.dart';
 import '../../util/globals.dart';
 
 import 'package:flutter/material.dart';
@@ -18,23 +19,24 @@ class SideBarNav extends StatefulWidget {
 class _MemberDashboardState extends State<SideBarNav> {
   /// Views to display
   List<Widget> views = [
-    MainDashboard(),
-    Center(
+    const MainDashboard(),
+    const Center(
       child: Text('Routines'),
     ),
-    Center(
+    const Center(
       child: Text('Achievements'),
     ),
-    Center(
+    const Center(
       child: Text('Schedule'),
     ),
-    Center(
+    const Center(
       child: Text('Account'),
     ),
-    Center(
+    const Center(
       child: Text('Settings'),
     ),
-    EditUserDataPage(),
+    const EditUserDataPage(),
+    const DailyLogPage(),
   ];
 
   int selectedIndex = 0;
@@ -94,6 +96,10 @@ class _MemberDashboardState extends State<SideBarNav> {
               SideNavigationBarItem(
                 icon: Icons.settings,
                 label: 'Edit User Data',
+              ),
+              SideNavigationBarItem(
+                icon: Icons.settings,
+                label: 'Daily Log'
               ),
             ],
             onTap: (index) {
