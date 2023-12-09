@@ -1,5 +1,6 @@
 CREATE TABLE accounts(
 	accountid SERIAL PRIMARY KEY,
+	account_type varchar(255),
 	firstName varchar(255),
 	lastName varchar(255),
 	email varchar(255),
