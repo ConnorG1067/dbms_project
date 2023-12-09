@@ -7,9 +7,10 @@ class DashboardWidgets{
 
     return Card(
       elevation: 5, // Adds a shadow to the card
-      margin: EdgeInsets.all(20),
+      margin: const EdgeInsets.all(20),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       child: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: DashedCircularProgressBar.square(
             valueNotifier: valueNotifier,
             progress: currentCount,
