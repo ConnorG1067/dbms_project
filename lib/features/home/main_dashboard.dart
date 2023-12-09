@@ -35,17 +35,17 @@ class _MainDashboardState extends State<MainDashboard> {
               Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  SizedBox(width: 340, height: 340, child: DashboardWidgets.dashboardCard(160, 250, 'Weight')),
-                  SizedBox(width: 340, height: 340, child: DashboardWidgets.dashboardCard(1500, 3200, 'Calories')),
-                  SizedBox(width: 340, height: 340, child: DashboardWidgets.dashboardCard(3700, 10000, 'Steps')),
+                  SizedBox(width: 340, height: 340, child: DashboardWidgets.dashboardCard(160, 250, 'Weight', 'lbs')),
+                  SizedBox(width: 340, height: 340, child: DashboardWidgets.dashboardCard(1500, 3200, 'Calories', 'cal')),
+                  SizedBox(width: 340, height: 340, child: DashboardWidgets.dashboardCard(3700, 10000, 'Steps', '')),
                 ],
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  SizedBox(width: 340, height: 340, child: DashboardWidgets.dashboardCard(500, 3700, 'Hydration')),
-                  SizedBox(width: 340, height: 340, child: DashboardWidgets.dashboardCard(30, 180, 'Active Minutes')),
-                  SizedBox(width: 340, height: 340, child: DashboardWidgets.dashboardCard(1, 8, 'Sleep Duration')),
+                  SizedBox(width: 340, height: 340, child: DashboardWidgets.dashboardCard(500, 3700, 'Hydration', 'ml')),
+                  SizedBox(width: 340, height: 340, child: DashboardWidgets.dashboardCard(30, 180, 'Active Minutes', 'm')),
+                  SizedBox(width: 340, height: 340, child: DashboardWidgets.dashboardCard(1, 8, 'Sleep Duration', 'h')),
                 ],
               )
             ],
