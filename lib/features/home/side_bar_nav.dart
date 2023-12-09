@@ -1,5 +1,5 @@
 import 'package:dbms_project/features/home/main_dashboard.dart';
-import 'package:dbms_project/features/home/edit_user_data.dart';
+import 'package:dbms_project/features/home/user_settings.dart';
 import 'package:dbms_project/features/home/daily_log.dart';
 import 'package:dbms_project/features/home/equipment_maintenance.dart';
 import '../../util/globals.dart';
@@ -30,13 +30,7 @@ class _MemberDashboardState extends State<SideBarNav> {
     const Center(
       child: Text('Schedule'),
     ),
-    const Center(
-      child: Text('Account'),
-    ),
-    const Center(
-      child: Text('Settings'),
-    ),
-    const EditUserDataPage(),
+    const UserSettings(),
     const DailyLogPage(),
     if(Globals.accountType == 'admin')
     const EquipmentMaintenancePage(),
@@ -89,16 +83,8 @@ class _MemberDashboardState extends State<SideBarNav> {
                 label: 'Schedule',
               ),
               const SideNavigationBarItem(
-                icon: Icons.person,
-                label: 'Account',
-              ),
-              const SideNavigationBarItem(
                 icon: Icons.settings,
                 label: 'Settings',
-              ),
-              const SideNavigationBarItem(
-                icon: Icons.settings,
-                label: 'Edit User Data',
               ),
               const SideNavigationBarItem(
                 icon: Icons.settings,

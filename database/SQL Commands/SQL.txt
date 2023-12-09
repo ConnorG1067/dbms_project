@@ -54,8 +54,8 @@ CREATE TABLE sessions(
 	trainerId INT,
 	memberId INT,
 	sessionDetails varchar(255),
-	sessionType varchar(255)
-	startTime varchar(255)
-	endTime varchar(255)
+	sessionType varchar(255),
+	startTime varchar(255),
+	endTime varchar(255),
 	date DATE
 );

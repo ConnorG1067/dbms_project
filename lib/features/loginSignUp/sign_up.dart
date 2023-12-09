@@ -36,10 +36,15 @@ class _SignUpPageState extends State<SignUpPage> {
   Future<bool> signUpUser(String firstName, String lastName, String email, String password, String accountType) async {
     // Check if the email already exists within the accounts table
     PostgreSQLResult result = await Globals.database.query("SELECT * FROM accounts WHERE accounts.email='$email'");
+
+    Globals.trainers = await Globals.database.query("SELECT * FROM accounts WHERE account_type='Trainer'");
+
     // If it does not then insert the data into the table accordingly
     if(result.isEmpty){
       await Globals.database.query("INSERT INTO accounts (account_type, firstName, lastName, email, password) VALUES ('$accountType', '$firstName', '$lastName', '$email', '$password')");
       Globals.currentAccount = (await Globals.database.query("SELECT * FROM accounts WHERE email='$email' AND password='$password'")).first.toTableColumnMap();
+      List<PostgreSQLResultRow> postgreSQLRow = await Globals.database.query("SELECT * FROM sessions WHERE memberid='${Globals.currentAccount['accounts']!['accountid']}'");
+      Globals.sessions = List.generate(postgreSQLRow.length, (index) => List.from(postgreSQLRow[index]));
       return true;
     }
     // return false indicating the email is a duplicate

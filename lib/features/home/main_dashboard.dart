@@ -254,7 +254,7 @@ class _MainDashboardState extends State<MainDashboard> {
                                               context: context,
                                               initialTime: TimeOfDay.now(),
                                             );
-                                            setState((){
+                                            setStateDialog((){
                                               startTimeText = selectedTime!.format(context);
                                             });
                                           },
@@ -274,7 +274,7 @@ class _MainDashboardState extends State<MainDashboard> {
                                               initialTime: TimeOfDay.now(),
 
                                             );
-                                            setState((){
+                                            setStateDialog((){
                                               endTimeText = selectedTime!.format(context);
                                             });
                                           },

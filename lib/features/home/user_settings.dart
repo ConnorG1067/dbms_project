@@ -3,14 +3,14 @@ import 'package:fluent_ui/fluent_ui.dart' as fluent;
 
 import '../../util/globals.dart';
 
-class EditUserDataPage extends StatefulWidget {
-  const EditUserDataPage({Key? key}) : super(key: key);
+class UserSettings extends StatefulWidget {
+  const UserSettings({Key? key}) : super(key: key);
 
   @override
-  State<EditUserDataPage> createState() => _EditUserDataPageState();
+  State<UserSettings> createState() => _UserSettingsState();
 }
 
-class _EditUserDataPageState extends State<EditUserDataPage> {
+class _UserSettingsState extends State<UserSettings> {
   bool isMale = true;
   TextEditingController editWeightController = TextEditingController();
   TextEditingController editFeetController = TextEditingController();
