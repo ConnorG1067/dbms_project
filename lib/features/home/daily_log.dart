@@ -75,7 +75,6 @@ class _DailyLogPageState extends State<DailyLogPage> {
               child: const Text('Submit'),
               onPressed: () {
                 addUserLogDb(addStepsController.text, addHydrationController.text, addCalorieIntakeController.text, addWeightController.text, addSleepHoursController.text, addActiveMinutesController.text);
-                Navigator.of(context).pop();
               },
             ),
 
