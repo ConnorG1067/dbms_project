@@ -30,6 +30,7 @@ CREATE TABLE goals(
 
 CREATE TABLE dailyLogs(
 	accountid INT,
+	logdate DATE,
 	steps INT,
 	hydration INT,
 	calorieIntake INT,
