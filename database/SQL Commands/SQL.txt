@@ -38,6 +38,18 @@ CREATE TABLE dailyLogs(
 	activeMins INT
 );
 
+CREATE TABLE equipment(
+	equipmentid SERIAL PRIMARY KEY,
+	purchasedate DATE
+);
+
+CREATE TABLE maintenanceLogs(
+	loggedby INT,
+	equipmentid INT,
+	logdate DATE,
+	notes varchar(255)
+);
+
 CREATE TABLE sessions(
 	trainerId INT,
 	memberId INT,

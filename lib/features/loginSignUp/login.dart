@@ -32,6 +32,7 @@ class _LoginPageState extends State<LoginPage> {
 
     if(result.isNotEmpty){
       Globals.currentAccount = result.first.toTableColumnMap();
+      Globals.accountType = (Globals.currentAccount['accounts'] as Map<String, dynamic>)['account_type'];
       return true;
     }
     return false;
