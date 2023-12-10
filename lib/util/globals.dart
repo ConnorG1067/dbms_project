@@ -6,4 +6,6 @@ class Globals{
   static late List<PostgreSQLResultRow> trainers;
   static late String accountType;
   static late List<List<dynamic>> sessions;
+
+  static late Map<String, dynamic> goalMap;
 }

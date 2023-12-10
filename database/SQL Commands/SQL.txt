@@ -35,7 +35,8 @@ CREATE TABLE dailyLogs(
 	calorieIntake INT,
 	weight INT,
 	sleepHours INT,
-	activeMins INT
+	activeMins INT,
+	date DATE
 );
 
 CREATE TABLE equipment(
@@ -54,8 +55,26 @@ CREATE TABLE sessions(
 	trainerId INT,
 	memberId INT,
 	sessionDetails varchar(255),
-	sessionType varchar(255)
-	startTime varchar(255)
-	endTime varchar(255)
+	sessionType varchar(255),
+	startTime varchar(255),
+	endTime varchar(255),
 	date DATE
+);
+
+CREATE TABLE strengthworkshop(
+    trainerId INT,
+    memberId INT,
+    date DATE,
+);
+
+CREATE TABLE cardioworkshop(
+    trainerId INT,
+    memberId INT,
+    date DATE,
+);
+
+CREATE TABLE yogaworkshop(
+    trainerId INT,
+    memberId INT,
+    date DATE,
 );
