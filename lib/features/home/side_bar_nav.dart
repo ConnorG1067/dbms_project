@@ -1,7 +1,9 @@
+import 'package:dbms_project/features/admin_home/manage_rooms.dart';
+import 'package:dbms_project/features/admin_home/session_management.dart';
 import 'package:dbms_project/features/home/main_dashboard.dart';
 import 'package:dbms_project/features/home/user_settings.dart';
 import 'package:dbms_project/features/home/daily_log.dart';
-import 'package:dbms_project/features/home/equipment_maintenance.dart';
+import 'package:dbms_project/features/admin_home/equipment_maintenance.dart';
 import 'package:dbms_project/features/home/workshops.dart';
 import 'package:dbms_project/features/trainer_home/complete_session_page.dart';
 import 'package:dbms_project/features/trainer_home/member_page.dart';
@@ -40,7 +42,11 @@ class _MemberDashboardState extends State<SideBarNav> {
     const TrainerDashboard(),
     const MemberProfilePage(),
     const CompletedSessionPage()
-  ] : [];
+  ] : [
+    const ManageRooms(),
+    const EquipmentMaintenancePage(),
+    const SessionManagement()
+  ];
 
   List<SideNavigationBarItem> sideBarItems = (Globals.accountType == 'member') ? [
     const SideNavigationBarItem(
@@ -85,7 +91,20 @@ class _MemberDashboardState extends State<SideBarNav> {
         icon: Icons.check,
         label: 'Completed Sessions'
     ),
-  ] : [];
+  ] : [
+    const SideNavigationBarItem(
+        icon: Icons.room,
+        label: 'Rooms'
+    ),
+    const SideNavigationBarItem(
+        icon: Icons.add_business,
+        label: 'Equipment Management'
+    ),
+    const SideNavigationBarItem(
+        icon: Icons.calendar_month,
+        label: 'Session Management'
+    ),
+  ];
 
   int selectedIndex = 0;
 

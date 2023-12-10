@@ -41,6 +41,7 @@ CREATE TABLE dailyLogs(
 
 CREATE TABLE equipment(
 	equipmentid SERIAL PRIMARY KEY,
+	name varchar(255),
 	purchasedate DATE
 );
 
@@ -84,4 +85,9 @@ CREATE TABLE sessionNote(
     memberId INT,
     note varchar(255),
     date DATE,
+);
+
+CREATE TABLE room(
+    roomId SERIAL,
+    roomType varchar(255)
 );
