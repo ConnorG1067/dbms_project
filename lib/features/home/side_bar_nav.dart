@@ -2,6 +2,7 @@ import 'package:dbms_project/features/home/main_dashboard.dart';
 import 'package:dbms_project/features/home/user_settings.dart';
 import 'package:dbms_project/features/home/daily_log.dart';
 import 'package:dbms_project/features/home/equipment_maintenance.dart';
+import 'package:dbms_project/features/home/workshops.dart';
 import '../../util/globals.dart';
 
 import 'package:flutter/material.dart';
@@ -27,9 +28,7 @@ class _MemberDashboardState extends State<SideBarNav> {
     const Center(
       child: Text('Achievements'),
     ),
-    const Center(
-      child: Text('Schedule'),
-    ),
+    const WorkShops(),
     const UserSettings(),
     const DailyLogPage(),
     if(Globals.accountType == 'admin')
@@ -80,14 +79,14 @@ class _MemberDashboardState extends State<SideBarNav> {
               ),
               const SideNavigationBarItem(
                 icon: Icons.calendar_today,
-                label: 'Schedule',
+                label: 'Workshops',
               ),
               const SideNavigationBarItem(
                 icon: Icons.settings,
                 label: 'Settings',
               ),
               const SideNavigationBarItem(
-                icon: Icons.settings,
+                icon: Icons.bookmark_add_outlined,
                 label: 'Daily Log'
               ),
               if(Globals.accountType == "admin")

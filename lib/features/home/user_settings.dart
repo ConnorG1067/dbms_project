@@ -143,10 +143,17 @@ class _UserSettingsState extends State<UserSettings> {
       body: FutureBuilder(
         future: fetchData(),
           builder: (BuildContext context, AsyncSnapshot<Map<String, PostgreSQLResult>> snapshot) {
-          Map<String, dynamic> userInfoMap = snapshot.data!['userInfo']!.first.toColumnMap();
-          Map<String, dynamic> userGoalMap = snapshot.data!['userGoals']!.first.toColumnMap();
-          return Padding(
-            padding: const EdgeInsets.all(50),
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(
+                color: Colors.deepPurpleAccent,
+              ),
+            );
+          }else{
+            Map<String, dynamic> userInfoMap = snapshot.data!['userInfo']!.first.toColumnMap();
+            Map<String, dynamic> userGoalMap = snapshot.data!['userGoals']!.first.toColumnMap();
+            return Padding(
+              padding: const EdgeInsets.all(50),
               child: Row(
                 children: [
                   Column(
@@ -194,7 +201,8 @@ class _UserSettingsState extends State<UserSettings> {
                   ),
                 ],
               ),
-          );
+            );
+          }
         }
       ),
     );

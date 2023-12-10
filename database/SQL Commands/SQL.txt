@@ -60,3 +60,21 @@ CREATE TABLE sessions(
 	endTime varchar(255),
 	date DATE
 );
+
+CREATE TABLE strengthworkshop(
+    trainerId INT,
+    memberId INT,
+    date DATE,
+);
+
+CREATE TABLE cardioworkshop(
+    trainerId INT,
+    memberId INT,
+    date DATE,
+);
+
+CREATE TABLE yogaworkshop(
+    trainerId INT,
+    memberId INT,
+    date DATE,
+);

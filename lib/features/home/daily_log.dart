@@ -89,7 +89,7 @@ class _DailyLogPageState extends State<DailyLogPage> {
             const Text('User Logs:'),
 
             SizedBox(
-              height: 200,
+              height: 100,
               child: FutureBuilder(
                 future: getUserDailyLogs(),
                 initialData: "User Logs",
