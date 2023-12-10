@@ -78,3 +78,10 @@ CREATE TABLE yogaworkshop(
     memberId INT,
     date DATE,
 );
+
+CREATE TABLE sessionNote(
+    trainerId INT,
+    memberId INT,
+    note varchar(255),
+    date DATE,
+);
