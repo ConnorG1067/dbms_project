@@ -16,7 +16,8 @@ class WorkshopWidgets{
           // Image at the top
           Image.network(
             imageUrl,
-            width: 200, // Adjust the height as needed
+            width: 200,
+            fit: BoxFit.cover,
           ),
           // Button below the image
           Container(
