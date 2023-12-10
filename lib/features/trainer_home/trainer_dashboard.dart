@@ -180,7 +180,7 @@ class _TrainerDashboardState extends State<TrainerDashboard> {
                                         style: TextStyle(fontSize: 16)),
                                         alignment: Alignment.centerLeft)),
                                 Container(
-                                    height: 200,
+                                    height: 400,
                                     // Set the fixed height as needed
                                     child: SingleChildScrollView(
                                       child: Column(

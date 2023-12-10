@@ -16,7 +16,6 @@ class _CompletedSessionPageState extends State<CompletedSessionPage> {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: () async {
-        print("FUCK");
         return await Globals.database.query("SELECT * FROM sessions WHERE date<TO_DATE('${DateFormat('yyyy-MM-dd').format(DateTime.now())}', 'YYYY-MM-DD')");
       }(),
       builder: (context, AsyncSnapshot<PostgreSQLResult> snapshot) {
