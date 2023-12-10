@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluent_ui/fluent_ui.dart' as fluent;
 import 'package:postgres/postgres.dart';
-
+import 'package:intl/intl.dart'; // Import the intl package for date formatting
 import '../../util/globals.dart';
 
 class DailyLogPage extends StatefulWidget {
@@ -24,8 +24,15 @@ class _DailyLogPageState extends State<DailyLogPage> {
   Future<void> addUserLogDb(String steps, String hydration, String calorieIntake, String weight, String sleepHours, String activeMinutes) async {
     Map<String, dynamic> currentAccountMap = Globals.currentAccount['accounts'];
     int accountId = currentAccountMap['accountid'];
-    await Globals.database.query("INSERT INTO dailylogs (accountId, steps, hydration, calorieintake, weight, sleephours, activemins) VALUES ($accountId, $steps, $calorieIntake, $hydration, $weight, $sleepHours, $activeMinutes)");
+    PostgreSQLResult logsResult = await Globals.database.query("SELECT * FROM dailylogs WHERE accountid='${Globals.currentAccount['accounts']!['accountid']}' AND date=TO_DATE('${DateFormat('yyyy-MM-dd').format(DateTime.now())}', 'YYYY-MM-DD')");
+    if (logsResult.isNotEmpty) {
+      await Globals.database.query("UPDATE dailylogs SET steps=$steps, hydration=$hydration, calorieintake=$calorieIntake, weight=$weight, sleephours=$sleepHours, activemins=$activeMinutes WHERE accountid=$accountId AND date=TO_DATE('${DateFormat('yyyy-MM-dd').format(DateTime.now())}', 'YYYY-MM-DD')");
+    } else {
+      await Globals.database.query("INSERT INTO dailylogs (accountId, steps, hydration, calorieintake, weight, sleephours, activemins, date) VALUES ($accountId, $steps, $calorieIntake, $hydration, $weight, $sleepHours, $activeMinutes, TO_DATE('${DateFormat('yyyy-MM-dd').format(DateTime.now())}', 'YYYY-MM-DD'))");
+    }
   }
+
+
 
   Future<PostgreSQLResult> getUserDailyLogs() async {
     Map<String, dynamic> currentAccountMap = Globals.currentAccount['accounts'];
