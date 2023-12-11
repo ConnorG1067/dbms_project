@@ -11,6 +11,7 @@ CREATE TABLE users(
 	accountid INT,
 	firstName varchar(255),
 	lastName varchar(255),
+	loyaltypts INT,
 	weight FLOAT,
 	age INT,
 	feet INT,

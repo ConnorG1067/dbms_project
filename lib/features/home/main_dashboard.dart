@@ -439,10 +439,17 @@ class _MainDashboardState extends State<MainDashboard> {
                                   int trainerId = Globals.trainers[Random()
                                       .nextInt(Globals.trainers.length)]
                                       .toTableColumnMap()['accounts']!['accountid'];
-                                  await Globals.database.query(
-                                      "INSERT INTO sessions (trainerid, memberid, sessiondetails, sessiontype, starttime, endtime, date) VALUES ('$trainerId', '${Globals
-                                          .currentAccount['accounts']['accountid']}', '${sessionDetailController
-                                          .text}', '$sessionType' , '$startTimeText', '$endTimeText', '$date')");
+                                  int loyaltyPts = (await Globals.database.query("SELECT * FROM Users WHERE accountid=${Globals.currentAccount['accounts']['accountid']}")).first.toColumnMap()['loyaltypts'];
+                                  await Globals.database.query("INSERT INTO sessions (trainerid, memberid, sessiondetails, sessiontype, starttime, endtime, date) VALUES ('$trainerId', '${Globals.currentAccount['accounts']['accountid']}', '${sessionDetailController.text}', '$sessionType' , '$startTimeText', '$endTimeText', '$date')");
+                                  if(loyaltyPts >=5){
+                                    Globals.database.query("INSERT INTO transactions (accountid, cost, loyaltypts, name, date) VALUES (${Globals.currentAccount['accounts']['accountid']}, 0, 0, 'Session', TO_DATE('${DateFormat('yyyy-MM-dd').format(date)}', 'YYYY-MM-DD'))");
+                                    Globals.database.query("UPDATE users SET loyaltypts = loyaltypts - 5 WHERE accountid=${Globals.currentAccount['accounts']['accountid']};");
+                                  }else{
+                                    Globals.database.query("INSERT INTO transactions (accountid, cost, loyaltypts, name, date) VALUES (${Globals.currentAccount['accounts']['accountid']}, 25.0, 3, 'Session', TO_DATE('${DateFormat('yyyy-MM-dd').format(date)}', 'YYYY-MM-DD'))");
+                                    Globals.database.query("UPDATE users SET loyaltypts = loyaltypts + 3 WHERE accountid=${Globals.currentAccount['accounts']['accountid']};");
+                                  }
+
+
                                   setState(() => Globals.sessions.add([
                                     trainerId,
                                     Globals

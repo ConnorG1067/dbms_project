@@ -48,12 +48,21 @@ class _WorkShopsState extends State<WorkShops> {
                 child: Text('Cancel'),
               ),
               TextButton(
-                onPressed: () {
+                onPressed: () async {
+                  int loyaltyPts = (await Globals.database.query("SELECT * FROM Users WHERE accountid=${Globals.currentAccount['accounts']['accountid']}")).first.toColumnMap()['loyaltypts'];
                   String dbTable = (trainingType == "Yoga Workshop") ? "yogaworkshop" : (trainingType == "Strength Workshop") ? "strengthworkshop" : "cardioworkshop";
-                  Globals.database.query("INSERT INTO $dbTable (trainerid, memberid, date) VALUES (${Globals.trainers[Random().nextInt(Globals.trainers.length)].toColumnMap()['accountid']}, ${Globals.currentAccount['accounts']!['accountid']}, TO_DATE('${DateFormat('yyyy-MM-dd').format(pickedDate)}', 'YYYY-MM-DD'))");
+                  if(loyaltyPts >= 10){
+                    Globals.database.query("INSERT INTO $dbTable (trainerid, memberid, date) VALUES (${Globals.trainers[Random().nextInt(Globals.trainers.length)].toColumnMap()['accountid']}, ${Globals.currentAccount['accounts']!['accountid']}, TO_DATE('${DateFormat('yyyy-MM-dd').format(pickedDate)}', 'YYYY-MM-DD'))");
+                    Globals.database.query("INSERT INTO transactions (accountid, cost, loyaltypts, name, date) VALUES (${Globals.currentAccount['accounts']['accountid']}, 0, 0, 'Workshop', TO_DATE('${DateFormat('yyyy-MM-dd').format(selectedDate)}', 'YYYY-MM-DD'))");
+                    Globals.database.query("UPDATE users SET loyaltypts = loyaltypts - 10 WHERE accountid=${Globals.currentAccount['accounts']['accountid']};");
+                  }else{
+                    Globals.database.query("INSERT INTO $dbTable (trainerid, memberid, date) VALUES (${Globals.trainers[Random().nextInt(Globals.trainers.length)].toColumnMap()['accountid']}, ${Globals.currentAccount['accounts']!['accountid']}, TO_DATE('${DateFormat('yyyy-MM-dd').format(pickedDate)}', 'YYYY-MM-DD'))");
+                    Globals.database.query("INSERT INTO transactions (accountid, cost, loyaltypts, name, date) VALUES (${Globals.currentAccount['accounts']['accountid']}, 35.0, 5, 'Workshop', TO_DATE('${DateFormat('yyyy-MM-dd').format(selectedDate)}', 'YYYY-MM-DD'))");
+                    Globals.database.query("UPDATE users SET loyaltypts = loyaltypts + 5 WHERE accountid=${Globals.currentAccount['accounts']['accountid']};");
+                  }
                   Navigator.of(context).pop();
                 },
-                child: Text('Confirm'),
+                child: Text('Confirm with payment'),
               ),
             ],
           );

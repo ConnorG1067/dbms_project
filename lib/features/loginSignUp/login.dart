@@ -25,13 +25,12 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<bool> loginUser(String email, String password) async {
     PostgreSQLResult result = await Globals.database.query("SELECT * FROM accounts WHERE email='$email' AND password='$password'");
-    Globals.accountType = (result.first.toColumnMap() as Map<String, dynamic>)['account_type'];
+    Globals.accountType = (result.first.toColumnMap())['account_type'];
     Globals.trainers = await Globals.database.query("SELECT * FROM accounts WHERE account_type='trainer'");
     if(Globals.accountType == "member"){
       List<PostgreSQLResultRow> postgreSQLRow = await Globals.database.query("SELECT * FROM sessions WHERE memberid='${result.first.toTableColumnMap()['accounts']!['accountid']}'");
       Globals.sessions = List.generate(postgreSQLRow.length, (index) => List.from(postgreSQLRow[index]));
       Globals.goalMap = (await Globals.database.query("SELECT * FROM goals WHERE accountid='${result.first.toColumnMap()['accountid']}'")).first.toColumnMap();
-
     }else if(Globals.accountType == "trainer") {
       List<PostgreSQLResultRow> postgreSQLRow = await Globals.database.query("SELECT * FROM sessions WHERE trainerid='${result.first.toTableColumnMap()['accounts']!['accountid']}'");
       Globals.sessions = List.generate(postgreSQLRow.length, (index) => List.from(postgreSQLRow[index]));
