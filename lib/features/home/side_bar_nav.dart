@@ -1,8 +1,14 @@
+import 'package:dbms_project/features/admin_home/billing.dart';
+import 'package:dbms_project/features/admin_home/manage_rooms.dart';
+import 'package:dbms_project/features/admin_home/session_management.dart';
 import 'package:dbms_project/features/home/main_dashboard.dart';
 import 'package:dbms_project/features/home/user_settings.dart';
 import 'package:dbms_project/features/home/daily_log.dart';
-import 'package:dbms_project/features/home/equipment_maintenance.dart';
+import 'package:dbms_project/features/admin_home/equipment_maintenance.dart';
 import 'package:dbms_project/features/home/workshops.dart';
+import 'package:dbms_project/features/trainer_home/complete_session_page.dart';
+import 'package:dbms_project/features/trainer_home/member_page.dart';
+import 'package:dbms_project/features/trainer_home/trainer_dashboard.dart';
 import '../../util/globals.dart';
 
 import 'package:flutter/material.dart';
@@ -20,19 +26,76 @@ class SideBarNav extends StatefulWidget {
 
 class _MemberDashboardState extends State<SideBarNav> {
   /// Views to display
-  List<Widget> views = [
+  List<Widget> views = (Globals.accountType == 'member') ? [
     const MainDashboard(),
-    const Center(
-      child: Text('Routines'),
-    ),
-    const Center(
-      child: Text('Achievements'),
-    ),
     const WorkShops(),
     const UserSettings(),
     const DailyLogPage(),
     if(Globals.accountType == 'admin')
     const EquipmentMaintenancePage(),
+  ] : (Globals.accountType == 'trainer') ? [
+    const TrainerDashboard(),
+    const MemberProfilePage(),
+    const CompletedSessionPage()
+  ] : [
+    const ManageRooms(),
+    const EquipmentMaintenancePage(),
+    const SessionManagement(),
+    const BillingSystem()
+  ];
+
+  List<SideNavigationBarItem> sideBarItems = (Globals.accountType == 'member') ? [
+    const SideNavigationBarItem(
+      icon: Icons.dashboard,
+      label: 'Dashboard',
+    ),
+    const SideNavigationBarItem(
+      icon: Icons.calendar_today,
+      label: 'Workshops',
+    ),
+    const SideNavigationBarItem(
+      icon: Icons.settings,
+      label: 'Settings',
+    ),
+    const SideNavigationBarItem(
+        icon: Icons.bookmark_add_outlined,
+        label: 'Daily Log'
+    ),
+    if(Globals.accountType == "admin")
+      const SideNavigationBarItem(
+          icon: Icons.settings,
+          label: 'Equipment Maintenance'
+      ),
+  ] : (Globals.accountType == 'trainer') ? [
+    const SideNavigationBarItem(
+        icon: Icons.dashboard,
+        label: 'Dashboard'
+    ),
+    const SideNavigationBarItem(
+        icon: Icons.account_circle,
+        label: 'Member Profiles'
+    ),
+    const SideNavigationBarItem(
+        icon: Icons.check,
+        label: 'Completed Sessions'
+    ),
+  ] : [
+    const SideNavigationBarItem(
+        icon: Icons.room,
+        label: 'Rooms'
+    ),
+    const SideNavigationBarItem(
+        icon: Icons.add_business,
+        label: 'Equipment Management'
+    ),
+    const SideNavigationBarItem(
+        icon: Icons.calendar_month,
+        label: 'Session Management'
+    ),
+    const SideNavigationBarItem(
+        icon: Icons.price_check,
+        label: 'Billing'
+    ),
   ];
 
   int selectedIndex = 0;
@@ -64,37 +127,7 @@ class _MemberDashboardState extends State<SideBarNav> {
                   DateFormat('yyyy-MM-dd').format(DateTime.now()),
                   style: const TextStyle(color: Colors.grey, fontSize: 10),
                 )),
-            items: [
-              const SideNavigationBarItem(
-                icon: Icons.dashboard,
-                label: 'Dashboard',
-              ),
-              const SideNavigationBarItem(
-                icon: Icons.alarm_outlined,
-                label: 'Routines',
-              ),
-              const SideNavigationBarItem(
-                icon: Icons.plus_one,
-                label: 'Achievements',
-              ),
-              const SideNavigationBarItem(
-                icon: Icons.calendar_today,
-                label: 'Workshops',
-              ),
-              const SideNavigationBarItem(
-                icon: Icons.settings,
-                label: 'Settings',
-              ),
-              const SideNavigationBarItem(
-                icon: Icons.bookmark_add_outlined,
-                label: 'Daily Log'
-              ),
-              if(Globals.accountType == "admin")
-              const SideNavigationBarItem(
-                icon: Icons.settings,
-                label: 'Equipment Maintenance'
-              ),
-            ],
+            items: sideBarItems,
             onTap: (index) {
               setState(() {
                 selectedIndex = index;

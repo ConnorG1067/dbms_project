@@ -206,7 +206,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         emailError = "Email already in use";
                       }else{
                         Globals.accountType = accountType;
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const IntroPage()));
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => IntroPage(accountType: accountType)));
                       }
                     // Notify the user the passwords do not match
                     }else{
