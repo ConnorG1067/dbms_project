@@ -2,7 +2,7 @@ import "package:dashed_circular_progress_bar/dashed_circular_progress_bar.dart";
 import "package:flutter/material.dart";
 
 class DashboardWidgets{
-  static Widget dashboardCard(double currentCount, double totalCount, String metric) {
+  static Widget dashboardCard(double currentCount, double totalCount, String metric, String suffix) {
     final ValueNotifier<double> valueNotifier = ValueNotifier(0);
 
     return Card(
@@ -32,7 +32,7 @@ class DashboardWidgets{
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        '${value.toInt()}/$totalCount',
+                        '${value.toInt()}/$totalCount $suffix',
                         style: const TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w300,

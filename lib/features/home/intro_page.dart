@@ -4,7 +4,12 @@ import 'package:flutter/material.dart';
 import '../../util/globals.dart';
 
 class IntroPage extends StatefulWidget {
-  const IntroPage({Key? key}) : super(key: key);
+  final String accountType;
+
+  const IntroPage({
+    Key? key,
+    required this.accountType,
+  }) : super(key: key);
 
   @override
   State<IntroPage> createState() => _IntroPageState();
