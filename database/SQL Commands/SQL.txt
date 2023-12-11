@@ -7,10 +7,18 @@ CREATE TABLE accounts(
 	password varchar(255)
 );
 
-CREATE TABLE users(
-	accountid INT,
-	firstName varchar(255),
-	lastName varchar(255),
+CREATE TABLE members(
+	accountid INT PRIMARY KEY,
+	weight FLOAT,
+	age INT,
+	feet INT,
+	inches int,
+	sex varchar(6),
+	loyaltypts INT
+);
+
+CREATE TABLE trainers(
+	accountid INT PRIMARY KEY,
 	weight FLOAT,
 	age INT,
 	feet INT,
@@ -18,25 +26,31 @@ CREATE TABLE users(
 	sex varchar(6)
 );
 
+CREATE TABLE admin(
+	accountid INT PRIMARY KEY,
+	isactive BOOLEAN
+);
+
 CREATE TABLE goals(
-	accountid INT,
+	accountid INT PRIMARY KEY,
 	steps INT,
 	hydration INT,
 	calorieIntake INT,
 	weight INT,
 	sleepHours INT,
-	activeMins INT
+	activeMinutes INT
 );
 
 CREATE TABLE dailyLogs(
 	accountid INT,
-	logdate DATE,
 	steps INT,
 	hydration INT,
 	calorieIntake INT,
 	weight INT,
 	sleepHours INT,
-	activeMins INT
+	activeMinutes INT,
+	date DATE,
+	PRIMARY KEY (accountid, date)
 );
 
 CREATE TABLE equipment(
