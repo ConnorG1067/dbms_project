@@ -1,3 +1,4 @@
+import 'package:dbms_project/features/admin_home/billing.dart';
 import 'package:dbms_project/features/admin_home/manage_rooms.dart';
 import 'package:dbms_project/features/admin_home/session_management.dart';
 import 'package:dbms_project/features/home/main_dashboard.dart';
@@ -45,7 +46,8 @@ class _MemberDashboardState extends State<SideBarNav> {
   ] : [
     const ManageRooms(),
     const EquipmentMaintenancePage(),
-    const SessionManagement()
+    const SessionManagement(),
+    const BillingSystem()
   ];
 
   List<SideNavigationBarItem> sideBarItems = (Globals.accountType == 'member') ? [
@@ -103,6 +105,10 @@ class _MemberDashboardState extends State<SideBarNav> {
     const SideNavigationBarItem(
         icon: Icons.calendar_month,
         label: 'Session Management'
+    ),
+    const SideNavigationBarItem(
+        icon: Icons.price_check,
+        label: 'Billing'
     ),
   ];
 

@@ -28,6 +28,15 @@ CREATE TABLE goals(
 	activeMins INT
 );
 
+CREATE TABLE transactions(
+    transactionid SERIAL,
+    accountid INT,
+    cost FLOAT,
+    loyaltypts INT,
+    name varchar(255),
+    date DATE
+);
+
 CREATE TABLE dailyLogs(
 	accountid INT,
 	steps INT,
