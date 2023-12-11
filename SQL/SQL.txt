@@ -1,0 +1,118 @@
+CREATE TABLE accounts(
+	accountid SERIAL PRIMARY KEY,
+	account_type varchar(255),
+	firstName varchar(255),
+	lastName varchar(255),
+	email varchar(255),
+	password varchar(255)
+);
+
+CREATE TABLE members(
+	accountid INT PRIMARY KEY,
+	weight FLOAT,
+	age INT,
+	feet INT,
+	inches int,
+	sex varchar(6),
+	loyaltypts INT
+);
+
+CREATE TABLE trainers(
+	accountid INT PRIMARY KEY,
+	weight FLOAT,
+	age INT,
+	feet INT,
+	inches int,
+	sex varchar(6)
+);
+
+CREATE TABLE admin(
+	accountid INT PRIMARY KEY,
+	isactive BOOLEAN
+);
+
+CREATE TABLE goals(
+	accountid INT PRIMARY KEY,
+	steps INT,
+	hydration INT,
+	calorieIntake INT,
+	weight INT,
+	sleepHours INT,
+	activeMinutes INT
+);
+
+CREATE TABLE dailyLogs(
+	accountid INT,
+	steps INT,
+	hydration INT,
+	calorieIntake INT,
+	weight INT,
+	sleepHours INT,
+	activeMinutes INT,
+	date DATE,
+	PRIMARY KEY (accountid, date)
+);
+
+CREATE TABLE equipment(
+	equipmentid SERIAL PRIMARY KEY,
+	purchasedate DATE,
+	name varchar(255)
+);
+
+CREATE TABLE maintenanceLogs(
+	logid SERIAL PRIMARY KEY,
+	loggedby INT,
+	equipmentid INT,
+	logdate DATE,
+	notes varchar(255)
+);
+
+CREATE TABLE sessions(
+	sessionid SERIAL PRIMARY KEY,
+	trainerId INT,
+	memberId INT,
+	sessionDetails varchar(255),
+	sessionType varchar(255),
+	startTime varchar(255),
+	endTime varchar(255),
+	date DATE,
+	roomid INT
+);
+
+CREATE TABLE strengthworkshop(
+	workshopid SERIAL PRIMARY KEY,
+	trainerId INT,
+	memberId INT,
+	date DATE
+);
+
+CREATE TABLE cardioworkshop(
+	workshopid SERIAL PRIMARY KEY,
+	trainerId INT,
+	memberId INT,
+	date DATE
+);
+
+CREATE TABLE yogaworkshop(
+	workshopid SERIAL PRIMARY KEY,
+	trainerId INT,
+	memberId INT,
+	date DATE
+);
+
+CREATE TABLE transactions(
+	transactionid SERIAL PRIMARY KEY,
+	accountid INT,
+	cost FLOAT,
+	loyaltypts INT,
+	name varchar(255),
+	date DATE
+);
+
+CREATE TABLE sessionnote(
+	trainerid INT,
+	sessionid INT,
+	date DATE,
+	note varchar(255),
+	PRIMARY KEY (trainerid, sessionid)
+);
