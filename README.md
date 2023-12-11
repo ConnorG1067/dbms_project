@@ -240,15 +240,15 @@ b) None of the non-key attributes depend on each other, that is, all the non-key
 
 #### Schema Diagram
 
-![Schema Diagram](dbSchemaDiagram_comp3005final.drawio.png)
+![Schema Diagram](documentation/dbSchemaDiagram_comp3005final.drawio.png)
 
 #### ER Model
 
-![ER Model](dbSchemaDiagram_comp3005final.drawio.png)
+![ER Model](documentation/dbSchemaDiagram_comp3005final.drawio.png)
 
 #### Relational Schema
 
-![Relational Schema](relationalSchemas_comp3005final_1.drawio.png)
+![Relational Schema](documentation/relationalSchemas_comp3005final_1.drawio.png)
 
 
 
