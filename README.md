@@ -139,10 +139,6 @@ Assumptions:
 
 ---
 
-# Reduction to Relation Schemas
-
----
-
 # Normalization of Relation Schemas
 
 **2NF**
