@@ -145,6 +145,95 @@ Assumptions:
 
 # Normalization of Relation Schemas
 
+**2NF**
+
+Second normal form is defined as every table has each non-key attribute specifically relating to the entire primary key. That is, every attribute that is not a primary key must specifically utilize the entire primary key in order to be second normal form.
+
+Admins Table 2NF Proof:
+Admin table consists of accountid as a primary key and isActive as a non-key attribute. The non-key attribute isActive directly relates to the accountid.
+
+Members Table 2NF Proof:
+The primary key of the members table is accountid. The non key attributes are weight, age, sex, feet, inches, and loyalty points. All of these non-key attributes directly relate to the accountid
+
+Accounts Table 2NF Proof:
+The Primary key of the accounts table is an accountid. The non key attributes are, firstName, lastName, account_type, email, and password. All of these non key attributes directly relate to  the accountid
+
+Trainer Table 2NF Proof:
+The Primary key of the accounts table is an accountid. The non key attributes are, weight, age, sex, feet and inches. All of these attributes directly relate to an accountid
+
+Goals Table 2NF Proof:
+The Primary key of the goals table is an accountid. The non key attributes are, steps, calorieIntake, weight, sleepHours, hydration, and activeMinutes.
+
+DailyLogs Table 2NF Proof:
+The Primary key of the dailyLogs table is an accountid and date. This is a composite primary key because each user can update their logs every day. The non key attributes are, steps, calorieIntake, weight, sleepHours, hydration, and activeMinutes.
+
+Sessions Table 2NF Proof:
+The Primary key of the sessions table is an accountid. The non key attributes are, trainerId, memberId, date, sessionType, startTime, endTime, sessionDetails, note and roomid. All of these non key attributes directly relate to the sessionid.
+
+Workshop Table 2NF Proof:
+All the workshops are structured the same. They have a workshopid as the primary key. The non key attributes are memberid, trainerid and date. All of these nonkey attributes directly relate to the primary key.
+
+MaintainceLogs Table 2NF Proof:
+The Maintanince logs have a primary key of logid. The non key attributes are loggedby, notes, equipmentid and logdate. All of these nonkey attributes directly relate to the primary key.
+
+Equipment Table 2NF Proof:
+The equipment table has an equipmentid as a primary key and a purchasedate and name as non key attributes. These two attributes directly relate to the primary key
+
+RoomTable 2NF Proof:
+The room table has an roomid as a primary key and a roomtype as a non key attribute. The room type directly relates to the primary key
+
+Transactions Table 2NF Proof:
+The transaction table has a transactionid as the primary key. Each non key attribute, accountid, cost, loyaltypts, name, date all directly relate to the transactionid
+
+**3NF**
+
+Third normal form is defined as every non-key attribute in a table should depend on the key, the whole key and nothing but the key. That is, nonkey-attributes should not depend on each other but instead only depend on the primary key
+
+Admins Table 2NF Proof:
+The admin table does not have multiple non-key attributes thus they cannot depend on each other
+
+Members Table 2NF Proof:
+None of the non key attributes within the member table depend on each other thus this table passes third normal form.
+
+Accounts Table 2NF Proof:
+None of the non key attributes within the accounts table depend on each other thus this table passes third normal form.
+
+Trainer Table 2NF Proof:
+None of the non key attributes within the trainer table depend on each other thus this table passes third normal form.
+
+Goals Table 2NF Proof:
+None of the non key attributes within the goals table depend on each other thus this table passes third normal form.
+
+DailyLogs Table 2NF Proof:
+None of the non key attributes within the dailylogs table depend on each other thus this table passes third normal form.
+
+Sessions Table 2NF Proof:
+None of the non key attributes within the sessions table depend on each other thus this table passes third normal form.
+
+Workshop Table 2NF Proof:
+None of the non key attributes within the workshops tables depend on each other thus this table passes third normal form.
+
+MaintainceLogs Table 2NF Proof:
+None of the non key attributes within the maintaincelogs table depend on each other thus this table passes third normal form.
+
+Equipment Table 2NF Proof:
+None of the non key attributes within the equipment table depend on each other thus this table passes third normal form.
+
+RoomTable 2NF Proof:
+None of the non key attributes within the room table depend on each other thus this table passes third normal form.
+
+Transactions Table 2NF Proof:
+None of the non key attributes within the transactions table depend on each other thus this table passes third normal form.
+
+**Conclusion:**
+
+All the tables within the database follow first and second normal form since 
+
+a) All of the non-key attributes directly relate to the primary key
+b) None of the non-key attributes depend on each other, that is, all the non-key attributes only depend on the primary key and nothing else
+
+
+
 ---
 
 # Database Schema Diagram
