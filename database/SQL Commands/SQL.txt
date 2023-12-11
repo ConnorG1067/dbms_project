@@ -38,3 +38,67 @@ CREATE TABLE dailyLogs(
 	sleepHours INT,
 	activeMins INT
 );
+
+CREATE TABLE equipment(
+	equipmentid SERIAL PRIMARY KEY,
+	purchasedate DATE,
+	name varchar(255)
+);
+
+CREATE TABLE maintenanceLogs(
+	logid SERIAL PRIMARY KEY,
+	loggedby INT,
+	equipmentid INT,
+	logdate DATE,
+	notes varchar(255)
+);
+
+CREATE TABLE sessions(
+	sessionid SERIAL PRIMARY KEY,
+	trainerId INT,
+	memberId INT,
+	sessionDetails varchar(255),
+	sessionType varchar(255),
+	startTime varchar(255),
+	endTime varchar(255),
+	date DATE,
+	roomid INT
+);
+
+CREATE TABLE strengthworkshop(
+	workshopid SERIAL PRIMARY KEY,
+	trainerId INT,
+	memberId INT,
+	date DATE
+);
+
+CREATE TABLE cardioworkshop(
+	workshopid SERIAL PRIMARY KEY,
+	trainerId INT,
+	memberId INT,
+	date DATE
+);
+
+CREATE TABLE yogaworkshop(
+	workshopid SERIAL PRIMARY KEY,
+	trainerId INT,
+	memberId INT,
+	date DATE
+);
+
+CREATE TABLE transactions(
+	transactionid SERIAL PRIMARY KEY,
+	accountid INT,
+	cost FLOAT,
+	loyaltypts INT,
+	name varchar(255),
+	date DATE
+);
+
+CREATE TABLE sessionnote(
+	trainerid INT,
+	sessionid INT,
+	date DATE,
+	note varchar(255),
+	PRIMARY KEY (trainerid, sessionid)
+);
