@@ -249,6 +249,4 @@ b) None of the non-key attributes depend on each other, that is, all the non-key
 
 # Video
 
-
-https://youtu.be/Xpg7aA9wtXo
 [![Comp3005 Database video](https://img.youtube.com/vi/Xpg7aA9wtXo/0.jpg)](https://youtu.be/Xpg7aA9wtXo)
