@@ -11,7 +11,7 @@
 - [Conceptual Design](#conceptual-design)
 - [Reduction to Relation Schemas](#reduction-to-relation-schemas)
 - [Normalization of Relation Schemas](#normalization-of-relation-schemas)
-- [Database Schema Diagram](#database-schema-diagram)
+- [Video](#video)
 
 ## Introduction
 
@@ -247,4 +247,8 @@ b) None of the non-key attributes depend on each other, that is, all the non-key
 ![Relational Schema](documentation/relationalSchemas_comp3005final_1.drawio.png)
 
 
+# Video
 
+
+https://youtu.be/Xpg7aA9wtXo
+[![Comp3005 Database video](https://img.youtube.com/vi/Xpg7aA9wtXo/0.jpg)](https://youtu.be/Xpg7aA9wtXo)
