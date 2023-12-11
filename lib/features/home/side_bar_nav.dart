@@ -28,12 +28,6 @@ class _MemberDashboardState extends State<SideBarNav> {
   /// Views to display
   List<Widget> views = (Globals.accountType == 'member') ? [
     const MainDashboard(),
-    const Center(
-      child: Text('Routines'),
-    ),
-    const Center(
-      child: Text('Achievements'),
-    ),
     const WorkShops(),
     const UserSettings(),
     const DailyLogPage(),
@@ -54,14 +48,6 @@ class _MemberDashboardState extends State<SideBarNav> {
     const SideNavigationBarItem(
       icon: Icons.dashboard,
       label: 'Dashboard',
-    ),
-    const SideNavigationBarItem(
-      icon: Icons.alarm_outlined,
-      label: 'Routines',
-    ),
-    const SideNavigationBarItem(
-      icon: Icons.plus_one,
-      label: 'Achievements',
     ),
     const SideNavigationBarItem(
       icon: Icons.calendar_today,
