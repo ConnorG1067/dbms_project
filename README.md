@@ -8,9 +8,10 @@
 
 - [Introduction](#introduction)
 - [Team Members](#team-members)
-- [Features](#features)
-- [Dependencies](#dependencies)
-- [Installation and Usage](#installation-and-usage)
+- [Conceptual Design](#conceptual-design)
+- [Reduction to Relation Schemas](#reduction-to-relation-schemas)
+- [Normalization of Relation Schemas](#normalization-of-relation-schemas)
+- [Database Schema Diagram](#database-schema-diagram)
 
 ## Introduction
 
@@ -21,9 +22,66 @@ Welcome to the Health App 3000 Fitness Workout App repository, developed as the 
 Connor Gomes
 Will Chartrand
 
-# Health and Fitness Club Management System
+# Conceptual Design
 
-Design and implement an application for a **Health and Fitness Club Management System**. This system aims to provide a comprehensive platform that caters to the diverse needs of club members, trainers, and administrative staff.
+Design of the Database:
+
+## Entities
+
+### Accounts:
+Stores the basic data that both trainers and members have such as the first name, last name, account type, email, and password.
+
+### Members:
+Stores user specific data such as the weight, age, sex, height, and number of loyalty points of the user.
+
+### Trainers:
+Similar to Members, trainers have basic information stored in them. Other tables such as the Sessions and the various Workshops (YogaWorkshop, CardioWorkshop, StrengthWorkshop) rely on trainers.
+
+### Admins:
+Responsible for adding logs for the equipment’s maintenance, overseeing club activities and payments.
+
+### Goals:
+Goals contain a set of various health statistics that are set by the Member. Contains fields such as steps, calorie intake, weight, sleep hours, hydration, minutes of physical activity.
+
+### DailyLogs:
+The daily recording of the progress made toward each goal. Contains the same fields as goals, with the addition of a date in order to keep track of when the log was created.
+
+### Sessions:
+Stores information about the session events that Members may partake in. Stores fields such as the Trainer’s ID, the ID of the Member, date, type of session, start time, end time, note, and the ID of the room that the event is taking place in.
+
+### YogaWorkshop, StrengthWorkshop, CardioWorkshop:
+All workshop tables hold information about the Members attending, the Trainer hosting the Workshop, and the date at which it takes place.
+
+### MaintenanceLogs:
+Stores information about when the Administers have performed a maintenance job on a specific piece of equipment, as well as the date, and notes if any.
+
+### Equipment:
+Stores the name of a specific piece of equipment as well as the date at which it was purchased.
+
+### Room:
+Stores the room ID number and the type of room. Rooms are where the events such as Sessions and Workshops take place.
+
+### Transactions:
+The various transactions that the Admins may view from 
+
+### SessionNote:
+Stores the notes taken by a Trainer for a specific session with a Member.
+Conceptual Design
+
+## Relationships:
+- Member-Goal: One-to-One relationship, as a member can have multiple fitness goals.
+- Member-DailyLog: One-to-Many relationship, as a member can have multiple daily logs.
+- Trainer-Session: One-to-Many relationship, as a trainer can conduct multiple sessions.
+- Trainer-Workshop: One-to-Many relationship, as a trainer can host multiple workshops.
+- Admin-Equipment: One-to-Many relationship, as an admin manages multiple pieces of equipment.
+- Admin-Transaction: One-to-Many relationship, as an admin handles and oversees multiple financial transactions.
+
+Assumptions:
+- A member can have multiple daily logs, and attend various sessions/workshops.
+- Trainers can conduct multiple sessions and host multiple workshops.
+- Admins manage multiple equipment, rooms, and financial transactions.
+- There is a Many-to-Many relationship between members and workshops, as a member can register 	for multiple workshops, and a workshop can have multiple members.
+- Loyalty points earned by members are tracked in the Transaction entity.
 
 ## Features
 
@@ -79,13 +137,14 @@ Design and implement an application for a **Health and Fitness Club Management S
   - Every transaction contributes to earning loyalty points.
   - Loyalty points can be redeemed for future services.
 
-## Dependencies:
+---
 
-- Flutter and Dart SDK
-- All flutter used flutter libraries
+# Reduction to Relation Schemas
 
-## Installation and Usage
+---
 
-1. Clone the repository.
-   ```bash
-   git clone https://github.com/your-username/FitnessPal-App.git
+# Normalization of Relation Schemas
+
+---
+
+# Database Schema Diagram
