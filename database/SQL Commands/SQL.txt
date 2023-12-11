@@ -11,7 +11,6 @@ CREATE TABLE users(
 	accountid INT,
 	firstName varchar(255),
 	lastName varchar(255),
-	loyaltypts INT,
 	weight FLOAT,
 	age INT,
 	feet INT,
@@ -29,33 +28,25 @@ CREATE TABLE goals(
 	activeMins INT
 );
 
-CREATE TABLE transactions(
-    transactionid SERIAL,
-    accountid INT,
-    cost FLOAT,
-    loyaltypts INT,
-    name varchar(255),
-    date DATE
-);
-
 CREATE TABLE dailyLogs(
 	accountid INT,
+	logdate DATE,
 	steps INT,
 	hydration INT,
 	calorieIntake INT,
 	weight INT,
 	sleepHours INT,
-	activeMins INT,
-	date DATE
+	activeMins INT
 );
 
 CREATE TABLE equipment(
 	equipmentid SERIAL PRIMARY KEY,
-	name varchar(255),
-	purchasedate DATE
+	purchasedate DATE,
+	name varchar(255)
 );
 
 CREATE TABLE maintenanceLogs(
+	logid SERIAL PRIMARY KEY,
 	loggedby INT,
 	equipmentid INT,
 	logdate DATE,
@@ -63,41 +54,51 @@ CREATE TABLE maintenanceLogs(
 );
 
 CREATE TABLE sessions(
+	sessionid SERIAL PRIMARY KEY,
 	trainerId INT,
 	memberId INT,
 	sessionDetails varchar(255),
 	sessionType varchar(255),
 	startTime varchar(255),
 	endTime varchar(255),
-	date DATE
+	date DATE,
+	roomid INT
 );
 
 CREATE TABLE strengthworkshop(
-    trainerId INT,
-    memberId INT,
-    date DATE,
+	workshopid SERIAL PRIMARY KEY,
+	trainerId INT,
+	memberId INT,
+	date DATE
 );
 
 CREATE TABLE cardioworkshop(
-    trainerId INT,
-    memberId INT,
-    date DATE,
+	workshopid SERIAL PRIMARY KEY,
+	trainerId INT,
+	memberId INT,
+	date DATE
 );
 
 CREATE TABLE yogaworkshop(
-    trainerId INT,
-    memberId INT,
-    date DATE,
+	workshopid SERIAL PRIMARY KEY,
+	trainerId INT,
+	memberId INT,
+	date DATE
 );
 
-CREATE TABLE sessionNote(
-    trainerId INT,
-    memberId INT,
-    note varchar(255),
-    date DATE,
+CREATE TABLE transactions(
+	transactionid SERIAL PRIMARY KEY,
+	accountid INT,
+	cost FLOAT,
+	loyaltypts INT,
+	name varchar(255),
+	date DATE
 );
 
-CREATE TABLE room(
-    roomId SERIAL,
-    roomType varchar(255)
+CREATE TABLE sessionnote(
+	trainerid INT,
+	sessionid INT,
+	date DATE,
+	note varchar(255),
+	PRIMARY KEY (trainerid, sessionid)
 );
